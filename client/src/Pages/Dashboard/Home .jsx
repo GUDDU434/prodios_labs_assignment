@@ -80,8 +80,6 @@ const Home = () => {
     }
   };
 
-  if (isTasksLoading) return <Loading />;
-
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -136,27 +134,31 @@ const Home = () => {
                       scrollbarWidth: "none",
                     }}
                   >
-                    {tasks[status].map((task, index) => (
-                      <Draggable
-                        key={task._id}
-                        draggableId={task._id.toString()}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <TaskCard
-                              task={task}
-                              setOpenModal={setOpenModal}
-                              setSelectedTask={setSelectedTask}
-                            />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
+                    {isTasksLoading ? (
+                      <Loading />
+                    ) : (
+                      tasks[status].map((task, index) => (
+                        <Draggable
+                          key={task._id}
+                          draggableId={task._id.toString()}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <TaskCard
+                                task={task}
+                                setOpenModal={setOpenModal}
+                                setSelectedTask={setSelectedTask}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))
+                    )}
                     {provided.placeholder}
                   </div>
                 </div>

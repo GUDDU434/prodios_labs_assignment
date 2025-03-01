@@ -39,12 +39,14 @@ const TaskCard = ({ task, setOpenModal, setSelectedTask }) => {
         title={task.title}
         sx={{
           backgroundColor: colorCodes[task.priority],
+          color: "white",
           overflow: "hidden",
           display: "-webkit-box",
           WebkitBoxOrient: "vertical",
           WebkitLineClamp: 2,
           textOverflow: "ellipsis",
-          color: "white",
+          lineHeight: "1.4em",
+          maxHeight: "2.8em",
         }}
       />
       <CardContent>
