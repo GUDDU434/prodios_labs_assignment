@@ -29,7 +29,7 @@ module.exports.LoginUser = async (req, res) => {
     }
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: "1d",
     });
     const refresh_token = jwt.sign(
       { userId: user._id },
@@ -63,7 +63,7 @@ module.exports.RefreshToken = (req, res) => {
       { userId: decoded.userId },
       process.env.JWT_SECRET,
       {
-        expiresIn: "1h",
+        expiresIn: "1d",
       }
     );
     res.cookie("accessToken", newToken, { httpOnly: true });
